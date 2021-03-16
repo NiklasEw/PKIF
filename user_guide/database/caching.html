@@ -536,7 +536,7 @@ operations.</p>
 keep certain queries from being cached. Example:</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="c1">// Turn caching on</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">cache_on</span><span class="p">();</span>
-<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM mytable&quot;</span><span class="p">);</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM database&quot;</span><span class="p">);</span>
 
 <span class="c1">// Turn caching off for this one query</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">cache_off</span><span class="p">();</span>

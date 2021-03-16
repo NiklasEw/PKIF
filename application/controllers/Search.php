@@ -16,5 +16,4 @@ class Pages extends CI_Controller{
         $this->template->load('basic_template',$page,$data);
     }
 
-    }
 }

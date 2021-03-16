@@ -491,7 +491,7 @@ $row[‘name’]</p>
 </div>
 <div class="section" id="standard-insert">
 <h2>Standard Insert<a class="headerlink" href="#standard-insert" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO mytable (title, name) VALUES (&quot;</span><span class="o">.</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;)&quot;</span><span class="p">;</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO database (title, name) VALUES (&quot;</span><span class="o">.</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">escape</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;)&quot;</span><span class="p">;</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">affected_rows</span><span class="p">();</span>
 </pre></div>
@@ -521,7 +521,7 @@ compliment of functions for working with data.</p>
         <span class="s1">&#39;date&#39;</span> <span class="o">=&gt;</span> <span class="nv">$date</span>
 <span class="p">);</span>
 
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>  <span class="c1">// Produces: INSERT INTO mytable (title, name, date) VALUES (&#39;{$title}&#39;, &#39;{$name}&#39;, &#39;{$date}&#39;)</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>  <span class="c1">// Produces: INSERT INTO database (title, name, date) VALUES (&#39;{$title}&#39;, &#39;{$name}&#39;, &#39;{$date}&#39;)</span>
 </pre></div>
 </div>
 </div>

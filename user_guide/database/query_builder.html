@@ -464,20 +464,20 @@ and adapter to utilize fewer resources.</p>
 <p><strong>$this-&gt;db-&gt;get()</strong></p>
 <p>Runs the selection query and returns the result. Can be used by itself
 to retrieve all records from a table:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>  <span class="c1">// Produces: SELECT * FROM mytable</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>  <span class="c1">// Produces: SELECT * FROM database</span>
 </pre></div>
 </div>
 <p>The second and third parameters enable you to set a limit and offset
 clause:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
 
-<span class="c1">// Executes: SELECT * FROM mytable LIMIT 20, 10</span>
+<span class="c1">// Executes: SELECT * FROM database LIMIT 20, 10</span>
 <span class="c1">// (in MySQL. Other databases have slightly different syntax)</span>
 </pre></div>
 </div>
 <p>You’ll notice that the above function is assigned to a variable named
 $query, which can be used to show the results:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span>
 <span class="p">{</span>
@@ -491,22 +491,22 @@ discussion regarding result generation.</p>
 <p>Compiles the selection query just like <strong>$this-&gt;db-&gt;get()</strong> but does not <em>run</em>
 the query. This method simply returns the SQL query as a string.</p>
 <p>Example:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get_compiled_select</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get_compiled_select</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$sql</span><span class="p">;</span>
 
-<span class="c1">// Prints string: SELECT * FROM mytable</span>
+<span class="c1">// Prints string: SELECT * FROM database</span>
 </pre></div>
 </div>
 <p>The second parameter enables you to set whether or not the query builder query
 will be reset (by default it will be reset, just like when using <cite>$this-&gt;db-&gt;get()</cite>):</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get_compiled_select</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get_compiled_select</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
 
-<span class="c1">// Prints string: SELECT * FROM mytable LIMIT 20, 10</span>
+<span class="c1">// Prints string: SELECT * FROM database LIMIT 20, 10</span>
 <span class="c1">// (in MySQL. Other databases have slightly different syntax)</span>
 
 <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;title, content, date&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get_compiled_select</span><span class="p">();</span>
 
-<span class="c1">// Prints string: SELECT title, content, date FROM mytable LIMIT 20, 10</span>
+<span class="c1">// Prints string: SELECT title, content, date FROM database LIMIT 20, 10</span>
 </pre></div>
 </div>
 <p>The key thing to notice in the above example is that the second query did not
@@ -518,7 +518,7 @@ using <strong>$this-&gt;db-&gt;reset_query()</strong>.</p>
 <p>Identical to the above function except that it permits you to add a
 “where” clause in the second parameter, instead of using the db-&gt;where()
 function:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get_where</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">),</span> <span class="nv">$limit</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">);</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get_where</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">),</span> <span class="nv">$limit</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Please read the about the where function below for more information.</p>
@@ -529,9 +529,9 @@ function:</p>
 <p><strong>$this-&gt;db-&gt;select()</strong></p>
 <p>Permits you to write the SELECT portion of your query:</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;title, content, date&#39;</span><span class="p">);</span>
-<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
 
-<span class="c1">// Executes: SELECT title, content, date FROM mytable</span>
+<span class="c1">// Executes: SELECT title, content, date FROM database</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -545,7 +545,7 @@ to FALSE, CodeIgniter will not try to protect your field or table names.
 This is useful if you need a compound select statement where automatic
 escaping of fields may break them.</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;(SELECT SUM(payments.amount) FROM payments WHERE payments.invoice_id=4) AS amount_paid&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
-<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>$this-&gt;db-&gt;select_max()</strong></p>
@@ -585,8 +585,8 @@ the resulting field.</p>
 <p><strong>$this-&gt;db-&gt;from()</strong></p>
 <p>Permits you to write the FROM portion of your query:</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;title, content, date&#39;</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
-<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>  <span class="c1">// Produces: SELECT title, content, date FROM mytable</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>  <span class="c1">// Produces: SELECT title, content, date FROM database</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -960,8 +960,8 @@ function. Here is an example using an array:</p>
         <span class="s1">&#39;date&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My date&#39;</span>
 <span class="p">);</span>
 
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
-<span class="c1">// Produces: INSERT INTO mytable (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+<span class="c1">// Produces: INSERT INTO database (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
 </pre></div>
 </div>
 <p>The first parameter will contain the table name, the second is an
@@ -976,8 +976,8 @@ associative array of values.</p>
 <span class="cm">*/</span>
 
 <span class="nv">$object</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Myclass</span><span class="p">;</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="nv">$object</span><span class="p">);</span>
-<span class="c1">// Produces: INSERT INTO mytable (title, content, date) VALUES (&#39;My Title&#39;, &#39;My Content&#39;, &#39;My Date&#39;)</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="nv">$object</span><span class="p">);</span>
+<span class="c1">// Produces: INSERT INTO database (title, content, date) VALUES (&#39;My Title&#39;, &#39;My Content&#39;, &#39;My Date&#39;)</span>
 </pre></div>
 </div>
 <p>The first parameter will contain the table name, the second is an
@@ -996,21 +996,21 @@ object.</p>
         <span class="s1">&#39;date&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;My date&#39;</span>
 <span class="p">);</span>
 
-<span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get_compiled_insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+<span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get_compiled_insert</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$sql</span><span class="p">;</span>
 
-<span class="c1">// Produces string: INSERT INTO mytable (`title`, `name`, `date`) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
+<span class="c1">// Produces string: INSERT INTO database (`title`, `name`, `date`) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
 </pre></div>
 </div>
 <p>The second parameter enables you to set whether or not the query builder query
 will be reset (by default it will be–just like $this-&gt;db-&gt;insert()):</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;My Title&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get_compiled_insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;My Title&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get_compiled_insert</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
 
-<span class="c1">// Produces string: INSERT INTO mytable (`title`) VALUES (&#39;My Title&#39;)</span>
+<span class="c1">// Produces string: INSERT INTO database (`title`) VALUES (&#39;My Title&#39;)</span>
 
 <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;My Content&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get_compiled_insert</span><span class="p">();</span>
 
-<span class="c1">// Produces string: INSERT INTO mytable (`title`, `content`) VALUES (&#39;My Title&#39;, &#39;My Content&#39;)</span>
+<span class="c1">// Produces string: INSERT INTO database (`title`, `content`) VALUES (&#39;My Title&#39;, &#39;My Content&#39;)</span>
 </pre></div>
 </div>
 <p>The key thing to notice in the above example is that the second query did not
@@ -1039,8 +1039,8 @@ function. Here is an example using an array:</p>
         <span class="p">)</span>
 <span class="p">);</span>
 
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert_batch</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
-<span class="c1">// Produces: INSERT INTO mytable (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;),  (&#39;Another title&#39;, &#39;Another name&#39;, &#39;Another date&#39;)</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert_batch</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+<span class="c1">// Produces: INSERT INTO database (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;),  (&#39;Another title&#39;, &#39;Another name&#39;, &#39;Another date&#39;)</span>
 </pre></div>
 </div>
 <p>The first parameter will contain the table name, the second is an
@@ -1068,7 +1068,7 @@ logics with different combinations of  <code class="docutils literal"><span clas
 
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">replace</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
 
-<span class="c1">// Executes: REPLACE INTO mytable (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
+<span class="c1">// Executes: REPLACE INTO database (title, name, date) VALUES (&#39;My title&#39;, &#39;My name&#39;, &#39;My date&#39;)</span>
 </pre></div>
 </div>
 <p>In the above example, if we assume that the <em>title</em> field is our primary
@@ -1081,7 +1081,7 @@ automatically escaped, just like with <code class="docutils literal"><span class
 <p><strong>It can be used instead of passing a data array directly to the insert
 or update functions:</strong></p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>  <span class="c1">// Produces: INSERT INTO mytable (`name`) VALUES (&#39;{$name}&#39;)</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>  <span class="c1">// Produces: INSERT INTO database (`name`) VALUES (&#39;{$name}&#39;)</span>
 </pre></div>
 </div>
 <p>If you use multiple function called they will be assembled properly
@@ -1089,7 +1089,7 @@ based on whether you are doing an insert or an update:</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="nv">$title</span><span class="p">);</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="nv">$status</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>set()</strong> will also accept an optional third parameter (<code class="docutils literal"><span class="pre">$escape</span></code>), that
@@ -1098,11 +1098,11 @@ difference, here is <code class="docutils literal"><span class="pre">set()</span
 parameter.</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">,</span> <span class="s1">&#39;field+1&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span> <span class="c1">// gives UPDATE mytable SET field = field+1 WHERE id = 2</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span> <span class="c1">// gives UPDATE database SET field = field+1 WHERE id = 2</span>
 
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">,</span> <span class="s1">&#39;field+1&#39;</span><span class="p">);</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span> <span class="c1">// gives UPDATE `mytable` SET `field` = &#39;field+1&#39; WHERE `id` = 2</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span> <span class="c1">// gives UPDATE `database` SET `field` = &#39;field+1&#39; WHERE `id` = 2</span>
 </pre></div>
 </div>
 <p>You can also pass an associative array to this function:</p>
@@ -1113,7 +1113,7 @@ parameter.</p>
 <span class="p">);</span>
 
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$array</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Or an object:</p>
@@ -1127,7 +1127,7 @@ parameter.</p>
 
 <span class="nv">$object</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Myclass</span><span class="p">;</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$object</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>$this-&gt;db-&gt;update()</strong></p>
@@ -1141,10 +1141,10 @@ is an example using an array:</p>
 <span class="p">);</span>
 
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
 <span class="c1">// Produces:</span>
 <span class="c1">//</span>
-<span class="c1">//      UPDATE mytable</span>
+<span class="c1">//      UPDATE database</span>
 <span class="c1">//      SET title = &#39;{$title}&#39;, name = &#39;{$name}&#39;, date = &#39;{$date}&#39;</span>
 <span class="c1">//      WHERE id = $id</span>
 </pre></div>
@@ -1160,10 +1160,10 @@ is an example using an array:</p>
 
 <span class="nv">$object</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Myclass</span><span class="p">;</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="nv">$object</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="nv">$object</span><span class="p">);</span>
 <span class="c1">// Produces:</span>
 <span class="c1">//</span>
-<span class="c1">// UPDATE `mytable`</span>
+<span class="c1">// UPDATE `database`</span>
 <span class="c1">// SET `title` = &#39;{$title}&#39;, `name` = &#39;{$name}&#39;, `date` = &#39;{$date}&#39;</span>
 <span class="c1">// WHERE id = `$id`</span>
 </pre></div>
@@ -1175,11 +1175,11 @@ is an example using an array:</p>
 <p>You’ll notice the use of the $this-&gt;db-&gt;where() function, enabling you
 to set the WHERE clause. You can optionally pass this information
 directly into the update function as a string:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="s2">&quot;id = 4&quot;</span><span class="p">);</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="s2">&quot;id = 4&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Or as an array:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">));</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>You may also use the $this-&gt;db-&gt;set() function described above when
@@ -1201,10 +1201,10 @@ Here is an example using an array:</p>
    <span class="p">)</span>
 <span class="p">);</span>
 
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update_batch</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update_batch</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">);</span>
 
 <span class="c1">// Produces:</span>
-<span class="c1">// UPDATE `mytable` SET `name` = CASE</span>
+<span class="c1">// UPDATE `database` SET `name` = CASE</span>
 <span class="c1">// WHEN `title` = &#39;My title&#39; THEN &#39;My Name 2&#39;</span>
 <span class="c1">// WHEN `title` = &#39;Another title&#39; THEN &#39;Another Name 2&#39;</span>
 <span class="c1">// ELSE `name` END,</span>
@@ -1240,17 +1240,17 @@ that it produces an UPDATE SQL string instead of an INSERT SQL string.</p>
 <h2><a class="toc-backref" href="#id9">Deleting Data</a><a class="headerlink" href="#deleting-data" title="Permalink to this headline">¶</a></h2>
 <p><strong>$this-&gt;db-&gt;delete()</strong></p>
 <p>Generates a delete SQL string and runs the query.</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">));</span>  <span class="c1">// Produces: // DELETE FROM mytable  // WHERE id = $id</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">));</span>  <span class="c1">// Produces: // DELETE FROM database  // WHERE id = $id</span>
 </pre></div>
 </div>
 <p>The first parameter is the table name, the second is the where clause.
 You can also use the where() or or_where() functions instead of passing
 the data to the second parameter of the function:</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
 
 <span class="c1">// Produces:</span>
-<span class="c1">// DELETE FROM mytable</span>
+<span class="c1">// DELETE FROM database</span>
 <span class="c1">// WHERE id = $id</span>
 </pre></div>
 </div>
@@ -1266,20 +1266,20 @@ function, or empty_table().</p>
 <p><strong>$this-&gt;db-&gt;empty_table()</strong></p>
 <p>Generates a delete SQL string and runs the
 query.:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">empty_table</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span> <span class="c1">// Produces: DELETE FROM mytable</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">empty_table</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span> <span class="c1">// Produces: DELETE FROM database</span>
 </pre></div>
 </div>
 <p><strong>$this-&gt;db-&gt;truncate()</strong></p>
 <p>Generates a truncate SQL string and runs the query.</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">truncate</span><span class="p">();</span>
 
 <span class="c1">// or</span>
 
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">truncate</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">truncate</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
 
 <span class="c1">// Produce:</span>
-<span class="c1">// TRUNCATE mytable</span>
+<span class="c1">// TRUNCATE database</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1299,7 +1299,7 @@ multiple functions. Consider this example:</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span>
                 <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">)</span>
                 <span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-                <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">);</span>
+                <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1360,7 +1360,7 @@ run the query:</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="c1">// Note that the second parameter of the get_compiled_select method is FALSE</span>
 <span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;field1&#39;</span><span class="p">,</span><span class="s1">&#39;field2&#39;</span><span class="p">))</span>
                                 <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;field3&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-                                <span class="o">-&gt;</span><span class="na">get_compiled_select</span><span class="p">(</span><span class="s1">&#39;mytable&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
+                                <span class="o">-&gt;</span><span class="na">get_compiled_select</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
 
 <span class="c1">// ...</span>
 <span class="c1">// Do something crazy with the SQL code... like add it to a cron script for</span>
@@ -1370,7 +1370,7 @@ run the query:</p>
 <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">result_array</span><span class="p">();</span>
 
 <span class="c1">// Would execute and return an array of results of the following query:</span>
-<span class="c1">// SELECT field1, field1 from mytable where field3 = 5;</span>
+<span class="c1">// SELECT field1, field1 from database where field3 = 5;</span>
 </pre></div>
 </div>
 <div class="admonition note">
