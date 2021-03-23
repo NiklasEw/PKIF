@@ -202,4 +202,27 @@ class Database extends CI_Controller{
         $Passwort = $this->input->post('Passwort');
         $this->Db_model->update_user($Username, $Passwort);
     }
+
+
+    /**
+     * UserThema create, update, delete
+     */
+
+    public function create_frageThema(){
+
+        $Bezeichnung = $this->input->post('Bezeichnung');
+        $Username = $this->input->post('Username');
+        $this->Db_model->create_frageThema($Bezeichnung, $Username);
+    }
+    public function delete_frageThema(){
+        $Username = $this->input->post('Username');
+        $Bezeichnung = $this->input->post('Bezeichnung');
+        $this->Db_model->delete_frageThema($Bezeichnung,$Username);
+    }
+
+    public function update_frageThema(){
+        $Bezeichnung = $this->input->post('Bezeichnung');
+        $Username = $this->input->post('Username');
+        $this->Db_model->update_frageThema($Bezeichnung, $Username);
+    }
 }

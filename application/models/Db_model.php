@@ -190,4 +190,28 @@ class Db_model extends CI_Model {
         $this->db->where('Passwort(hash)', $Username);
         $this->db->update('database');
     }
+
+
+    /**
+     * UserThema create, update, delete
+     */
+
+
+    public function create_userThema($Bezeichnung, $Username){
+        $this->db->set('Username', $Username);
+        $this->db->set('QID', $QID);
+        $this->db->insert('database');
+    }
+    public function delete_userThema($Bezeichnung, $Username){
+        $this->db->where('Username', $Username);
+        $this->db->where('Bezeichnung', $Bezeichnung);
+        $this->db->delete('database');
+    }
+    public function update_userThema($Bezeichnung, $Username){
+        $this->db->set('Bezeichnung', $Bezeichnung);
+        $this->db->set('Username', $Username);
+        $this->db->where('Username', $Username);
+        $this->db->where('Bezeichnung', $Bezeichnung);
+        $this->db->update('database');
+    }
 }
