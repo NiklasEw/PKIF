@@ -30,4 +30,6 @@ class Login extends CI_Controller {
         $this->session->unset_userdata($data);
         redirect('Login/view');
         }
+
+        
 }
