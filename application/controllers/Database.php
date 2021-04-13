@@ -10,8 +10,6 @@ class Database extends CI_Controller{
             }
 
         $data['title'] = ucfirst($page); // Capitalize the first letter
-        #$testquery = $this->Db_model->get_Data(1);//Erste Eintrag des Arrays der Datenbank
-        #print_r($testquery);//Einfaches Printen, des kompletten Arrays
         $data['query'] = $this->Db_model->get_Data();
         
         

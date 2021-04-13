@@ -83,7 +83,11 @@
 <h1><?php #echo $title ?></h1>
 
 <?php echo $content ?>
-<?php ?>
+<?php
+  //Lädt das Db_model in die Startseite
+  $CI =& get_instance();
+  $CI->load->model('Db_model');
+?>
 
 </br>
 <?php #echo $adress ?>

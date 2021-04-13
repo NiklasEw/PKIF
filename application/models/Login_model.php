@@ -2,6 +2,7 @@
 class Login_model extends CI_Model {
     public function __construct(){
         $this->load->database();
+        $loginstate =false;
     }
     public function check_user($data){
         $this->db->where('User', $data['username']);

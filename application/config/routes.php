@@ -54,7 +54,6 @@ $route['default_controller'] = 'pages/view';
 $route['data/(:any)'] = 'database/mydata/$1';
 $route['(:any)'] = 'pages/view/$1';
 $route['db/(:any)'] = 'database/$1';
-$route['login/(:any)'] = 'Login/view/$1';
 $route['breadcrumb/(:any)'] ='Test_breadcrumb/$1';
 $route['search/(:any)'] = 'Search/search_input/$1';
 

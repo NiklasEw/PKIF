@@ -12,6 +12,10 @@ class Db_model extends CI_Model {
         }
     }
 
+    public function test(){
+        return "Test pos";
+    }
+
     /**
      * Antwort create, update, delete
      */
