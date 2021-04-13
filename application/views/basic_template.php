@@ -77,22 +77,6 @@
   <?php endif; ?>
 </nav>
 </br>
-<!--
-<div class="alert alert-success" role="alert">
-  Nichts ist schiefgegangen!
-</div>
-</br>
-<p>
-  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Ein-/Ausklappen
-  </a>
-</p>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    Versteckt!
-  </div>
-</div>
--->
 
 
 
@@ -103,6 +87,7 @@
 <h1><?php #echo $title ?></h1>
 
 <?php echo $content ?>
+<?php ?>
 
 </br>
 <?php #echo $adress ?>

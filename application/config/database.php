@@ -74,8 +74,8 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'sqlite:F:\usbwebserver\CI3\assets\db\database.db',
+	'dsn'	=> 'sqlite:F:\usbwebserver\CI4\assets\db\db.db',
+	'hostname' => 'sqlite:F:\usbwebserver\CI4\assets\db\db.db',
 	'username' => '',
 	'password' => '',
 	'database' => '',
