@@ -1,10 +1,10 @@
 <?php
 class Db_model extends CI_Model {
     public function __construct(){
-    $this->load->database();
+        $this->load->database();
     }
     public function get_data($id=null){
-        $query = $this->db->get('database');
+        $query = $this->db->get('user');
         if($id==null){
             return $query->result_array();
         } else{

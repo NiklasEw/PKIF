@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
- <head>
+<head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -69,14 +69,13 @@
     </ul>
   </div>
   <?php
-  //Schaut, ob der Benutzer angemeldet ist. Ist dies der Fall, wird ihm der Abmelde-Button angezeigt, andernfalls die Anmelde-Button
-  $CI = get_instance();
-  $CI->load->model("Login_model");
-  if ($CI->Login_model->getLoginState() == false): ?>
+
+  $session = $this->session->userdata('id_user');
+  if (empty($session)): ?>
   <button type="button" class="btn btn-primary" onclick="location.href = 'Login/view';" >Login</button>
   
   <?php else : ?>
-  <button type="button" class="btn btn-success" >Logout</button>
+  <button type="button" class="btn btn-success" onclick="location.href = 'Login/logout';">Logout</button>
   <?php endif; ?>
 </nav>
 </br>
