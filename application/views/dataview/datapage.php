@@ -1,6 +1,5 @@
 <html>
  <head>
- <title>CodeIgniter Tutorial</title>
  </head>
  <body>
  <script>
@@ -59,6 +58,7 @@
 
  <?php
     foreach ($query as $data_item){
+        print_r($data_item);
         ?>
         <div id="entry<?php echo $data_item['id']?>" class="card">
             <h5 class="card-header bg-success" data-name=<?php echo $data_item['name'] ?>><?php echo $data_item['name'].' '.$data_item['rating'].

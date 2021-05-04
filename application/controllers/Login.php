@@ -7,12 +7,9 @@ class Login extends CI_Controller {
     }
     public function view(){
         if($_POST){
-            print_r( $_POST);
             $result = $this->Login_model->check_user($_POST);
-            print_r($result);
 
             if(!empty($result)){
-                echo "Nicht empty";
                 $data = array(
                 'id_user' => $result->ID,
                 'username' => $result->Username
@@ -20,7 +17,6 @@ class Login extends CI_Controller {
                 $this->session->set_userdata($data);
                 redirect('Home');
             } else{
-                echo "empty";
                 $this->session->set_flashdata('flash_data', 'Passwort oder User falsch');
                 $this->session->set_flashdata('flash_data', $result->ID);
                 redirect('Login/view');

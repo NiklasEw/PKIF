@@ -11,7 +11,6 @@ class Login_model extends CI_Model {
         $this->db->where('Password', md5($data['password']));
         
         $result = $this->db->get('User')->row();
-        print_r("test");
         return $result;
     }
 
