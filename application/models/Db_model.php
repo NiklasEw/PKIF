@@ -4,7 +4,77 @@ class Db_model extends CI_Model {
         $this->load->database();
     }
     public function get_data($id=null){
-        $query = $this->db->get('user');
+        $query = $this->db->get('User');
+        if($id==null){
+            return $query->result_array();
+        } else{
+            return $query->result_array()[0];
+        }
+    }
+
+    public function get_data_User($id=null){
+        $query = $this->db->get('User');
+        if($id==null){
+            return $query->result_array();
+        } else{
+            return $query->result_array()[0];
+        }
+    }
+
+    public function get_data_Fragen($id=null){
+        $query = $this->db->get('Fragen');
+        if($id==null){
+            return $query->result_array();
+        } else{
+            return $query->result_array()[0];
+        }
+    }
+
+    public function get_data_Antworten($id=null){
+        $query = $this->db->get('Antworten');
+        if($id==null){
+            return $query->result_array();
+        } else{
+            return $query->result_array()[0];
+        }
+    }
+
+    public function get_data_Thema($id=null){
+        $query = $this->db->get('Thema');
+        if($id==null){
+            return $query->result_array();
+        } else{
+            return $query->result_array()[0];
+        }
+    }
+    public function get_data_BewertungUserAntworten($id=null){
+        $query = $this->db->get('BewertungUserAntwort');
+        if($id==null){
+            return $query->result_array();
+        } else{
+            return $query->result_array()[0];
+        }
+    }
+    public function get_data_BewertungUserFrage($id=null){
+        $query = $this->db->get('BewertungUserFrage');
+        if($id==null){
+            return $query->result_array();
+        } else{
+            return $query->result_array()[0];
+        }
+    }
+
+    public function get_data_FragenThema($id=null){
+        $query = $this->db->get('FragenThema');
+        if($id==null){
+            return $query->result_array();
+        } else{
+            return $query->result_array()[0];
+        }
+    }
+
+    public function get_data_UserThema($id=null){
+        $query = $this->db->get('UserThema');
         if($id==null){
             return $query->result_array();
         } else{
