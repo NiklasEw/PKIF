@@ -2,9 +2,6 @@
     echo $this->session->flashdata('flash_data');
 } ?>
 
-<?php
-  $session = $this->session->userdata('id_user');
-  if (empty($session)): ?>
 <div class="row">
     <div id="form" class="collapse">
         <form action="<?php site_url('register') ?>" method="post" class="form-horizontal">
@@ -28,8 +25,3 @@
         </form>
     </div>
 </div>
-<?php else : ?>
-<div>
-    Du bist bereits Regestriert
-</div>
-<?php endif; ?>

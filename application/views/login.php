@@ -9,6 +9,7 @@
                 <div class="col-sm-11">
                     <input type="text" class="form-control" name="username" />
                 </div>
+                
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label">Password:</label>

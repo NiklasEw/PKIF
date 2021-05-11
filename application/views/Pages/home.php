@@ -6,6 +6,7 @@
     $(document).ready(function(e){   
 
         
+<<<<<<< HEAD
         if($("#updateid").val()!=""){
                     var func="<?php echo site_url("db/update_frage");?>";
                 }
@@ -13,6 +14,25 @@
                     var func="<?php echo site_url("db/create_frage");?>";
                 }
                       
+=======
+        $session = $this->session->userdata('id_user');
+        if(!empty($session)){
+            $is_admin = "<div data-id=" . $data_item['QID'] . " ></div>";
+            <div data-id=" . $data_item['QID'] . "></div>;
+        }
+        else{
+        $is_admin = "";
+        }
+
+        if($("#updateid").val()!=""){
+            var func="<?php echo site_url("db/frage_update");?>";
+        }
+        else{
+            var func="<?php echo site_url("db/frage_create");?>";
+        }
+
+                
+>>>>>>> 9e15c3faec44008273c58b0680dcc72f34125010
         //Macht den Frage stellen button aus der Eingabe der Datenbank funktionsfähig 
         $("#submit").click(function(){
             alert("Debug");
