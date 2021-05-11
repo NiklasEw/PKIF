@@ -58,7 +58,7 @@
 
  <?php
     foreach($Fragen as $data_item){
-        print_r($data);
+        print_r($Fragen);
     }
     foreach ($User as $data_item){
         print_r($User);

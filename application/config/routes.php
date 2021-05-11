@@ -57,6 +57,7 @@ $route['db/(:any)'] = 'database/$1';
 $route['breadcrumb/(:any)'] ='Test_breadcrumb/$1';
 $route['search/(:any)'] = 'Search/search_input/$1';
 $route['Login/(:any)'] = 'Login/$1';
+$route['Register/(:any)'] = 'Register/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;

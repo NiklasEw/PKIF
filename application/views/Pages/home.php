@@ -7,10 +7,10 @@
         
         $session = $this->session->userdata('id_user');
                 if($("#updateid").val()!=""){
-                    var func="<?php echo site_url("db/frage_update");?>";
+                    var func="<?php echo site_url("db/update");?>";
                 }
                 else{
-                    var func="<?php echo site_url("db/frage_create");?>";
+                    var func="<?php echo site_url("db/create");?>";
                 }
                 
         //Macht den Frage stellen button aus der Eingabe der Datenbank funktionsfähig 
@@ -53,7 +53,7 @@
    <!-- Ausgabe der Datenbank in Karten-->
    <div class="container" >
         <?php
-            foreach($QID AS $data_item) {
+            foreach($Fragen AS $data_item) {
             echo'
                     <div id="entry'.$data_item['id'].'" class="card">
                         <div class="card-header" data-headline=" '. $data_item['Name']. '">
