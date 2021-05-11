@@ -97,12 +97,12 @@ class Db_model extends CI_Model {
         $this->db->set('posBewertung', $posBewertung);
         $this->db->set('Username', $Username);
         $this->db->set('QID', $QID);
-        $this->db->insert('database');
+        $this->db->insert('Antworten');
         return $this->db->insert_id();
     }
     public function delete_antwort($AID){
         $this->db->where('AID', intval($AID));
-        $this->db->delete('database');
+        $this->db->delete('Antworten');
     }
 
     public function update_antwort($Content, $Time, $negBewertung, $posBewertung, $Username, $QID){
@@ -113,7 +113,7 @@ class Db_model extends CI_Model {
         $this->db->set('Username', $Username);
         $this->db->set('QID', $QID);
         $this->db->where('AID', intval($AID));
-        $this->db->update('database');
+        $this->db->update('Antworten');
     }
 
      /**
@@ -126,12 +126,12 @@ class Db_model extends CI_Model {
         $this->db->set('AID', $AID);
         $this->db->set('posB',$posB);
         $this->db->set('negB', $negB);
-        $this->db->insert('database');
+        $this->db->insert('BewertungUserAntwort');
     }
     public function delete_bewertungUA($AID, $Username){
         $this->db->where('AID', intval($AID));
         $this->db->where('Username', $Username);
-        $this->db->delete('database');
+        $this->db->delete('BewertungUserAntwort');
     }
     public function update_bewertungUA($Username, $AID, $posB, $negB){
         $this->db->set('Username', $Username);
@@ -140,7 +140,7 @@ class Db_model extends CI_Model {
         $this->db->set('negB', $negB);
         $this->db->where('AID', intval($AID));
         $this->db->where('Username', $Username);
-        $this->db->update('database');
+        $this->db->update('BewertungUserAntwort');
     }
 
     /**
@@ -153,12 +153,12 @@ class Db_model extends CI_Model {
         $this->db->set('QID', $QID);
         $this->db->set('posB',$posB);
         $this->db->set('negB', $negB);
-        $this->db->insert('database');
+        $this->db->insert('BewertungUserFrage');
     }
     public function delete_bewertungUF($QID, $Username){
         $this->db->where('QID', intval($QID));
         $this->db->where('Username', $Username);
-        $this->db->delete('database');
+        $this->db->delete('BewertungUserFrage');
     }
     public function update_bewertungUF($Username, $QID, $posB, $negB){
         $this->db->set('Username', $Username);
@@ -167,7 +167,7 @@ class Db_model extends CI_Model {
         $this->db->set('negB', $negB);
         $this->db->where('QID', intval($QID));
         $this->db->where('Username', $Username);
-        $this->db->update('database');
+        $this->db->update('BewertungUserFrage');
     }
 
     /**
@@ -181,12 +181,12 @@ class Db_model extends CI_Model {
         $this->db->set('negBewertung',$negBewertung);
         $this->db->set('posBewertung', $posBewertung);
         $this->db->set('Username', $Username);
-        $this->db->insert('database');
+        $this->db->insert('Fragen');
         return $this->db->insert_id();
     }
     public function delete_frage($QID){
         $this->db->where('QID', intval($QID));
-        $this->db->delete('database');
+        $this->db->delete('Fragen');
     }
 
     public function update_frage($QID, $Headline,$Content, $Time, $negBewertung, $posBewertung, $Username){
@@ -197,7 +197,7 @@ class Db_model extends CI_Model {
         $this->db->set('posBewertung', $posBewertung);
         $this->db->set('Username', $Username);
         $this->db->where('QID', intval($QID));
-        $this->db->update('database');
+        $this->db->update('Fragen');
     }
 
     /**
@@ -208,19 +208,19 @@ class Db_model extends CI_Model {
     public function create_frageThema($Bezeichnung, $QID){
         $this->db->set('Bezeichnung', $Bezeichnung);
         $this->db->set('QID', $QID);
-        $this->db->insert('database');
+        $this->db->insert('FragenThema');
     }
     public function delete_frageThema($Bezeichnung, $QID){
         $this->db->where('QID', intval($QID));
         $this->db->where('Bezeichnung', $Bezeichnung);
-        $this->db->delete('database');
+        $this->db->delete('FragenThema');
     }
     public function update_frageThema($Bezeichnung, $QID){
         $this->db->set('Bezeichnung', $Bezeichnung);
         $this->db->set('QID', $QID);
         $this->db->where('QID', intval($QID));
         $this->db->where('Bezeichnung', $Bezeichnung);
-        $this->db->update('database');
+        $this->db->update('FragenThema');
     }
 
     /**
@@ -231,17 +231,17 @@ class Db_model extends CI_Model {
     public function create_thema($Bezeichnung, $AnzahlUser){
         $this->db->set('Bezeichnung', $Bezeichnung);
         $this->db->set('AnzahlUser', $AnzahlUser);
-        $this->db->insert('database');
+        $this->db->insert('Thema');
     }
     public function delete_thema($Bezeichnung){
         $this->db->where('Bezeichnung', $Bezeichnung);
-        $this->db->delete('database');
+        $this->db->delete('Thema');
     }
     public function update_thema($Bezeichnung, $AnzahlUser){
         $this->db->set('Bezeichnung', $Bezeichnung);
         $this->db->set('AnzahlUser', $AnzahlUser);
         $this->db->where('Bezeichnung', $Bezeichnung);
-        $this->db->update('database');
+        $this->db->update('Thema');
     }
 
     /**
@@ -250,19 +250,19 @@ class Db_model extends CI_Model {
 
 
     public function create_user($Username, $Passwort){
-        $this->db->set('Bezeichnung', $Bezeichnung);
-        $this->db->set('Passwort(hash)', $Passwort);
-        $this->db->insert('database');
+        $this->db->set('Username', $Username);
+        $this->db->set('Password', $Passwort);
+        $this->db->insert('User');
     }
     public function delete_user($Username){
         $this->db->where('Username', $Username);
-        $this->db->delete('database');
+        $this->db->delete('User');
     }
     public function update_user($Username, $AnzahlUser){
         $this->db->set('Username', $Username);
         $this->db->set('AnzahlUser', $Passwort);
         $this->db->where('Passwort(hash)', $Username);
-        $this->db->update('database');
+        $this->db->update('User');
     }
 
 
@@ -274,18 +274,18 @@ class Db_model extends CI_Model {
     public function create_userThema($Bezeichnung, $Username){
         $this->db->set('Username', $Username);
         $this->db->set('QID', $QID);
-        $this->db->insert('database');
+        $this->db->insert('UserThema');
     }
     public function delete_userThema($Bezeichnung, $Username){
         $this->db->where('Username', $Username);
         $this->db->where('Bezeichnung', $Bezeichnung);
-        $this->db->delete('database');
+        $this->db->delete('UserThema');
     }
     public function update_userThema($Bezeichnung, $Username){
         $this->db->set('Bezeichnung', $Bezeichnung);
         $this->db->set('Username', $Username);
         $this->db->where('Username', $Username);
         $this->db->where('Bezeichnung', $Bezeichnung);
-        $this->db->update('database');
+        $this->db->update('UserThema');
     }
 }

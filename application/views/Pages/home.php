@@ -6,14 +6,6 @@
     $(document).ready(function(e){   
         
         $session = $this->session->userdata('id_user');
-<<<<<<< HEAD
-                if($("#updateid").val()!=""){
-                    var func="<?php echo site_url("db/update");?>";
-                }
-                else{
-                    var func="<?php echo site_url("db/create");?>";
-                }
-=======
         if(!empty($session)){
             $is_admin = "<div data-id=" . $data_item['QID'] . " ></div>";
             <div data-id=" . $data_item['QID'] . "></div>;
@@ -29,7 +21,6 @@
             var func="<?php echo site_url("db/frage_create");?>";
         }
 
->>>>>>> 6b4b60c0a0155a7aba3d927b75d01fe1f707ea82
                 
         //Macht den Frage stellen button aus der Eingabe der Datenbank funktionsfähig 
         //und den Controller Database zur Funktion create
@@ -75,10 +66,7 @@
    <!-- Ausgabe der Datenbank in Karten-->
    <div class="container" >
         <?php
-<<<<<<< HEAD
-=======
        
->>>>>>> 6b4b60c0a0155a7aba3d927b75d01fe1f707ea82
             foreach($Fragen AS $data_item) {
             echo'
                     <div id="entry'.$data_item['QID'].'" class="card">
