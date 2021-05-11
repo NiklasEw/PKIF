@@ -12,8 +12,8 @@ class Register extends CI_Controller {
 
 
             if(empty($result)){
-                print_r($_POST);
                 $this->Db_model->create_User($_POST['username'], md5($_POST['password']));
+                redirect('Home');
             } else{
                 echo ("Dieser Nutzer ist bereits Regestriert");
             }

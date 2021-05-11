@@ -72,7 +72,14 @@
 
   $session = $this->session->userdata('id_user');
   if (empty($session)): ?>
+  <div>
+  <button type="button" class="btn btn-warning" onclick="location.href = 'Register/view';" >Register</button>
+  &nbsp
+  </div>
+  
+  <div>
   <button type="button" class="btn btn-primary" onclick="location.href = 'Login/view';" >Login</button>
+  </div>
   
   <?php else : ?>
   <button type="button" class="btn btn-success" onclick="location.href = 'Login/logout';">Logout</button>
