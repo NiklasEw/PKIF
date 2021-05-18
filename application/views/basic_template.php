@@ -93,18 +93,15 @@
 <title>placeholder</title>
 </head>
 <body>
-<h1><?php #echo $title ?></h1>
 
 <?php echo $content ?>
 <?php
-  //Lädt das Db_model in die Startseite
+  //Lädt das Db_model in die Seite
   $CI =& get_instance();
   $CI->load->model('Db_model');
 ?>
 
 </br>
-<?php #echo $adress ?>
-<?php #echo $tel ?>
 </br>
 <em>&copy; 2020</em>
 </body>
