@@ -3,7 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
     function __construct(){
         parent::__construct();
+        $this->load->library('template');
         $this->load->model('Login_model');
+        $this->load->model('Db_model');
     }
     public function view(){
         if($_POST){
