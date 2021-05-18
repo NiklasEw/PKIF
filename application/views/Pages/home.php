@@ -7,13 +7,20 @@
         $("#submit").click(function(){
             today=new Date();
             date=String(today.getFullYear()+"-"+ String(today.getMonth() + 1).padStart(2, '0')+"-" + today.getDate()).padStart(2, '0');
-            data=$("#FrageStellenForm").serialize();
-            data+="&Time="+date+"&negBewertung=0&posBewertung=0&";
-            alert(data);
+            alert(<?php echo $this->session->userdata('id_user'); ?>);
+            frage=$("#FrageStellenForm").serialize();
+            frage+="&Time="+date+"&negBewertung=0&posBewertung=0&";
+
+
+            //WICHTIG FÜR NÄCHSTE WOCHE HIER DRAN WEITER ARBEITEN NIKLAS DAS IST NOCH NICHT FERTIG
+            //FINDE HERAUS WARUM DER DIE ID ANZEIGEN WILL ABER NICHT DEN USERNAME
+
+
+            alert(frage);
             $.ajax({
                 type:"POST",
                 url: "<?php echo site_url('pages/create_frage');?>",
-                data:$("#FrageStellenForm").serialize(),
+                data:$("#FrageStellenForm").serialize()+"&Time="+date+"&negBewertung=0&posBewertung=0&",
                 success: function (response) {
                 alert(response);
                 }   
