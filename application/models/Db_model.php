@@ -153,6 +153,13 @@ class Db_model extends CI_Model {
         $this->db->set('QID', $QID);
         $this->db->set('posB',$posB);
         $this->db->set('negB', $negB);
+
+        $temp=get_data_Fragen($QID);
+        if($posB){
+            $temp[5]++;
+        } else $temp[4]++;
+        $this->update_frage($QID,$temp[1],$temp[2],$temp[3],$temp[4],$temp[5],$temp[6]);
+
         $this->db->insert('BewertungUserFrage');
     }
     public function delete_bewertungUF($QID, $Username){
@@ -174,13 +181,13 @@ class Db_model extends CI_Model {
      * Frage create, update, delete
      */
 
-    public function create_frage($Headline,$Content, $Time, $negBewertung, $posBewertung, $Username){
+    public function create_frage($Headline,$Content, $Time, $negBewertung, $posBewertung, $ID){
         $this->db->set('Headline', $Headline);
         $this->db->set('Content', $Content);
         $this->db->set('Time', $Time);
         $this->db->set('negBewertung',$negBewertung);
         $this->db->set('posBewertung', $posBewertung);
-        $this->db->set('Username', $Username);
+        $this->db->set('ID', $ID);
         $this->db->insert('Fragen');
         return $this->db->insert_id();
     }
@@ -189,13 +196,13 @@ class Db_model extends CI_Model {
         $this->db->delete('Fragen');
     }
 
-    public function update_frage($QID, $Headline,$Content, $Time, $negBewertung, $posBewertung, $Username){
+    public function update_frage($QID, $Headline,$Content, $Time, $negBewertung, $posBewertung, $ID){
         $this->db->set('Headline', $Headline);
         $this->db->set('Content', $Content);
         $this->db->set('Time', $Time);
         $this->db->set('negBewertung',$negBewertung);
         $this->db->set('posBewertung', $posBewertung);
-        $this->db->set('Username', $Username);
+        $this->db->set('ID', $ID);
         $this->db->where('QID', intval($QID));
         $this->db->update('Fragen');
     }

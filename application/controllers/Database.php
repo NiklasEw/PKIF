@@ -43,10 +43,10 @@ class Database extends CI_Controller{
         $Time = $this->input->post('Time');
         $negBewertung = $this->input->post('negBewertung');
         $posBewertung = $this->input->post('posBewertung');
-        $Username = $this->input->post('Username');
+        $ID = $this->input->post('ID');
         $QID = $this->input->post('QID');
 
-        $AID = $this->Db_model->create_antwort($Content, $Time, $negBewertung, $posBewertung, $Username, $QID);
+        $AID = $this->Db_model->create_antwort($Content, $Time, $negBewertung, $posBewertung, $ID, $QID);
         echo $AID;
     }
     public function delete_antwort(){
@@ -59,34 +59,34 @@ class Database extends CI_Controller{
         $Time = $this->input->post('Time');
         $negBewertung = $this->input->post('negBewertung');
         $posBewertung = $this->input->post('posBewertung');
-        $Username = $this->input->post('Username');
+        $ID = $this->input->post('ID');
         $QID = $this->input->post('QID');
         $AID = $this->input->post('AID');
-        $this->Db_model->update_antwort($Content, $Time, $negBewertung, $posBewertung, $Username, $QID);
+        $this->Db_model->update_antwort($Content, $Time, $negBewertung, $posBewertung, $ID, $QID);
     }
     /**
      * BewertungUserAntwort create, update, delete
      */
     public function create_bewertungUA(){
 
-        $Username = $this->input->post('Username');
+        $ID = $this->input->post('ID');
         $AID = $this->input->post('AID');
         $posB = $this->input->post('posB');
         $negB = $this->input->post('negB');
-        $this->Db_model->create_bewertungUA($Username, $AID, $posB, $negB);
+        $this->Db_model->create_bewertungUA($ID, $AID, $posB, $negB);
     }
     public function delete_bewertungUA(){
         $AID = $this->input->post('AID');
-        $Username = $this->input->post('Username');
-        $this->Db_model->delete_bewertungUA($AID,$Username);
+        $ID = $this->input->post('ID');
+        $this->Db_model->delete_bewertungUA($AID,$ID);
     }
 
     public function update_bewertungUA(){
-        $Username = $this->input->post('Username');
+        $ID = $this->input->post('ID');
         $AID = $this->input->post('AID');
         $posB = $this->input->post('posB');
         $negB = $this->input->post('negB');
-        $this->Db_model->update_bewertungUA($Username, $AID, $posB, $negB);
+        $this->Db_model->update_bewertungUA($ID, $AID, $posB, $negB);
     }
 
     /**
@@ -95,39 +95,39 @@ class Database extends CI_Controller{
 
     public function create_bewertungUF(){
 
-        $Username = $this->input->post('Username');
+        $ID = $this->input->post('ID');
         $QID = $this->input->post('QID');
         $posB = $this->input->post('posB');
         $negB = $this->input->post('negB');
-        $this->Db_model->create_bewertungUF($Username, $QID, $posB, $negB);
+        $this->Db_model->create_bewertungUF($ID, $QID, $posB, $negB);
     }
     public function delete_bewertungUF(){
         $QID = $this->input->post('QID');
-        $Username = $this->input->post('Username');
-        $this->Db_model->delete_bewertungUF($QID,$Username);
+        $ID = $this->input->post('ID');
+        $this->Db_model->delete_bewertungUF($QID,$ID);
     }
 
     public function update_bewertungUF(){
-        $Username = $this->input->post('Username');
+        $ID = $this->input->post('ID');
         $QID = $this->input->post('QID');
         $posB = $this->input->post('posB');
         $negB = $this->input->post('negB');
-        $this->Db_model->update_bewertungUF($Username, $QID, $posB, $negB);
+        $this->Db_model->update_bewertungUF($ID, $QID, $posB, $negB);
     }
     /**
      * Frage create, update, delete
      */
     public function create_frage(){
-
+        
         $Headline = $this->input->post('Headline');
         $Content = $this->input->post('Content');
         $Time = $this->input->post('Time');
         $negBewertung = $this->input->post('negBewertung');
         $posBewertung = $this->input->post('posBewertung');
-        $Username = $this->input->post('Username');
+        $ID = $this->input->post('ID');
         
 
-        $QID = $this->Db_model->create_frage($Headline,$Content, $Time, $negBewertung, $posBewertung, $Username);
+        $QID = $this->Db_model->create_frage($Headline,$Content, $Time, $negBewertung, $posBewertung, $ID);
         echo $QID;
     }
     public function delete_frage(){
@@ -141,9 +141,9 @@ class Database extends CI_Controller{
         $Time = $this->input->post('Time');
         $negBewertung = $this->input->post('negBewertung');
         $posBewertung = $this->input->post('posBewertung');
-        $Username = $this->input->post('Username');
+        $ID = $this->input->post('ID');
         $QID = $this->input->post('QID');
-        $this->Db_model->update_frage($QID,$Headline,$Content, $Time, $negBewertung, $posBewertung, $Username);
+        $this->Db_model->update_frage($QID,$Headline,$Content, $Time, $negBewertung, $posBewertung, $ID);
     }
 
     /**
@@ -191,6 +191,7 @@ class Database extends CI_Controller{
     /**
      * User create, update, delete
      */
+    
     public function create_user(){
 
         $Username = $this->input->post('Username');
@@ -216,18 +217,23 @@ class Database extends CI_Controller{
     public function create_userThema(){
 
         $Bezeichnung = $this->input->post('Bezeichnung');
-        $Username = $this->input->post('Username');
-        $this->Db_model->create_userThema($Bezeichnung, $Username);
+        $ID = $this->input->post('ID');
+        $this->Db_model->create_userThema($Bezeichnung, $ID);
     }
     public function delete_userThema(){
-        $Username = $this->input->post('Username');
+        $ID = $this->input->post('ID');
         $Bezeichnung = $this->input->post('Bezeichnung');
-        $this->Db_model->delete_userThema($Bezeichnung,$Username);
+        $this->Db_model->delete_userThema($Bezeichnung,$ID);
     }
 
     public function update_userThema(){
         $Bezeichnung = $this->input->post('Bezeichnung');
-        $Username = $this->input->post('Username');
-        $this->Db_model->update_userThema($Bezeichnung, $Username);
+        $ID = $this->input->post('ID');
+        $this->Db_model->update_userThema($Bezeichnung, $ID);
+    }
+
+
+    public function get_username_from_id($id=null){
+        return $this->Db_model->get_data_User($id);
     }
 }
