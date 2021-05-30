@@ -3,7 +3,27 @@
 
 <head>
 <script>
-    $(document).ready(function(e){
+    $(document).ready(function(e){   
+
+        
+        $session = $this->session->userdata('id_user');
+        if(!empty($session)){
+            $is_admin = "<div data-id=" . $data_item['QID'] . " ></div>";
+            <div data-id=" . $data_item['QID'] . "></div>;
+        }
+        else{
+        $is_admin = "";
+        }
+
+        if($("#updateid").val()!=""){
+            var func="<?php echo site_url("db/frage_update");?>";
+        }
+        else{
+            var func="<?php echo site_url("db/frage_create");?>";
+        }
+
+                
+        //Macht den Frage stellen button aus der Eingabe der Datenbank funktionsfähig 
         $("#submit").click(function(){
             //Ließt das momentane Datum mit Hilfe der eingebauten JavaScript-Funktion aus
             today=new Date();
@@ -34,6 +54,38 @@
                 }   
             });
         });
+
+         $("#good").click(function(){
+            alert("Debug");
+
+            $.ajax({
+                type:"POST",
+               
+                url: "<?php echo site_url('db/create_frage');?>",
+                data:$("#myForm").serialize(),
+                success: function (response) {
+                    $("#myForm").trigger("reset");
+                    window.location.reload(); 
+                    alert(response);
+                }
+            });
+        });
+
+        $("#bad").click(function(){
+            alert("Debug");
+
+            $.ajax({
+                type:"POST",
+               
+                url: "<?php echo site_url('db/');?>",
+                success: function (response) {
+                    $("#myForm").trigger("reset");
+                    window.location.reload(); 
+                    alert(response);
+                }
+            });
+        });
+
     });
 </script>
 </head>
@@ -56,6 +108,7 @@
             <label for="exampleFormControlTextarea1">Frage</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Content"></textarea>
         </div>
+        <input type="hidden"id="updateid" name="QID" value=""class="form-control">
         <button id="submit" type="button" class="btn btn-primary pull-right">Frage stellen</button>
     </div>
 </form>
@@ -100,9 +153,11 @@
                         </div>
                     </div>
                 </div>
-            '; 
-            }
-        ?>
+            ';
+        }
+         ?>
+            
+        
     </div>
 
 </body>
