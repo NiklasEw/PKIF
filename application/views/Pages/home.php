@@ -5,23 +5,6 @@
 <script>
     $(document).ready(function(e){   
 
-        
-        $session = $this->session->userdata('id_user');
-        if(!empty($session)){
-            $is_admin = "<div data-id=" . $data_item['QID'] . " ></div>";
-            <div data-id=" . $data_item['QID'] . "></div>;
-        }
-        else{
-        $is_admin = "";
-        }
-
-        if($("#updateid").val()!=""){
-            var func="<?php echo site_url("db/frage_update");?>";
-        }
-        else{
-            var func="<?php echo site_url("db/frage_create");?>";
-        }
-
                 
         //Macht den Frage stellen button aus der Eingabe der Datenbank funktionsfähig 
         $("#submit").click(function(){
@@ -52,37 +35,6 @@
                 success: function (response) {
                     alert(response);
                 }   
-            });
-        });
-
-         $("#good").click(function(){
-            alert("Debug");
-
-            $.ajax({
-                type:"POST",
-               
-                url: "<?php echo site_url('db/create_frage');?>",
-                data:$("#myForm").serialize(),
-                success: function (response) {
-                    $("#myForm").trigger("reset");
-                    window.location.reload(); 
-                    alert(response);
-                }
-            });
-        });
-
-        $("#bad").click(function(){
-            alert("Debug");
-
-            $.ajax({
-                type:"POST",
-               
-                url: "<?php echo site_url('db/');?>",
-                success: function (response) {
-                    $("#myForm").trigger("reset");
-                    window.location.reload(); 
-                    alert(response);
-                }
             });
         });
 
