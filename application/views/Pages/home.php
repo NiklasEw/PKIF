@@ -21,8 +21,8 @@
                 type:"POST",
                 url: "<?php echo site_url('db/create_frage');?>",
                 data:$("#FrageStellenForm").serialize()+"&Time="+date+"&negBewertung=0&posBewertung=0&ID="+<?php echo $this->session->userdata('id_user'); ?>,
-                success: function(document){
-                    $("#myForm").trigger("reset");
+                success: function(response){
+                    $("#FrageStellenForm").trigger("reset");
                     window.location.reload();
                 }
             });

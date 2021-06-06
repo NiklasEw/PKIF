@@ -82,10 +82,10 @@ class Db_model extends CI_Model {
      * Antwort create, update, delete
      */
 
-    public function create_antwort($Content, $Time, $negBewertung, $posBewertung, $Username, $QID){
+    public function create_antwort($Content, $Time, $negBewertung, $posBewertung, $ID, $QID){
         $this->db->set('Content', $Content);
         $this->db->set('Time', $Time);
-        $this->db->set('Username', $Username);
+        $this->db->set('ID', $ID);
         $this->db->set('QID', $QID);
         $this->db->insert('Antworten');
         return $this->db->insert_id();
@@ -95,10 +95,10 @@ class Db_model extends CI_Model {
         $this->db->delete('Antworten');
     }
 
-    public function update_antwort($Content, $Time, $negBewertung, $posBewertung, $Username, $QID){
+    public function update_antwort($Content, $Time, $negBewertung, $posBewertung, $ID, $QID){
         $this->db->set('Content', $Content);
         $this->db->set('Time', $Time);
-        $this->db->set('Username', $Username);
+        $this->db->set('ID', $ID);
         $this->db->set('QID', $QID);
         $this->db->where('AID', intval($AID));
         $this->db->update('Antworten');
@@ -109,33 +109,36 @@ class Db_model extends CI_Model {
      */
 
 
-    public function create_bewertungUF($Username, $QID, $posB, $negB){
-        $this->db->set('Username', $Username);
+    public function create_bewertungUF($ID, $QID, $posB, $negB){
+        $this->db->set('ID', $ID);
         $this->db->set('QID', $QID);
         $this->db->set('posB',$posB);
         $this->db->set('negB', $negB);
-
-        $temp=get_data_Fragen($QID);
-        if($posB){
-            $temp[5]++;
-        } else $temp[4]++;
-        $this->update_frage($QID,$temp[1],$temp[2],$temp[3],$temp[4],$temp[5],$temp[6]);
-
         $this->db->insert('BewertungUserFrage');
+
+
+        if($posB=="True"){
+            $this->incr_frage_posBewertung($QID);
+        } 
+        if($negB=="True") {
+            $this->incr_frage_negBewertung($QID);
+        }
     }
-    public function delete_bewertungUF($QID, $Username){
+    public function delete_bewertungUF($QID, $ID){
         $this->db->where('QID', intval($QID));
-        $this->db->where('Username', $Username);
+        $this->db->where('ID', $ID);
         $this->db->delete('BewertungUserFrage');
     }
-    public function update_bewertungUF($Username, $QID, $posB, $negB){
-        $this->db->set('Username', $Username);
+    public function update_bewertungUF($ID, $QID, $posB, $negB){
+        
+        $this->db->set('ID', $ID);
         $this->db->set('QID', $QID);
         $this->db->set('posB',$posB);
         $this->db->set('negB', $negB);
         $this->db->where('QID', intval($QID));
-        $this->db->where('Username', $Username);
+        $this->db->where('ID', $ID);
         $this->db->update('BewertungUserFrage');
+
     }
 
     /**
@@ -168,6 +171,102 @@ class Db_model extends CI_Model {
         $this->db->update('Fragen');
     }
 
+    //Funktion, die die positiven Bewertungen einer Frage um 1 erhöht 
+    public function incr_frage_posBewertung($QID){
+        //Temporäre Variable, um die Anzahl der posB zu speichern
+        $temp=0;
+        //Foreach-Loop, der durch jede Frage geht
+        foreach($this->Db_model->get_data_Fragen() AS $frage){
+            //Test, ob die QID der Frage mit der QID der gesuchten Frage übereinstimmt 
+            if($frage['QID']==$QID){
+                //Falls ja, wird die momentane Anzahl der posB der Frage in temp gespeichert
+                $temp=$frage['posBewertung'];
+                //Erhöhen der posB um 1
+                $temp++;
+            }
+        }
+        //Speichern der um 1 erhöhten posB in der DB
+        $this->db->set('posBewertung',$temp);
+        $this->db->where('QID',intval($QID));
+        $this->db->update('Fragen');
+        
+        //DEBUG
+        //return $temp;
+
+    }
+
+    //Funktion, die die positiven Bewertungen einer Frage um 1 veringert 
+    public function decr_frage_posBewertung($QID){
+        //Temporäre Variable, um die Anzahl der posB zu speichern
+        $temp=0;
+        //Foreach-Loop, der durch jede Frage geht
+        foreach($this->Db_model->get_data_Fragen() AS $frage){
+            //Test, ob die QID der Frage mit der QID der gesuchten Frage übereinstimmt 
+            if($frage['QID']==$QID){
+                //Falls ja, wird die momentane Anzahl der posB der Frage in temp gespeichert
+                $temp=$frage['posBewertung'];
+                //Erhöhen der posB um 1
+                $temp--;
+            }
+        }
+        //Speichern der um 1 veringerten posB in der DB
+        $this->db->set('posBewertung',$temp);
+        $this->db->where('QID',intval($QID));
+        $this->db->update('Fragen');
+        
+        //DEBUG
+        //return $temp;
+
+    }
+
+    //Funktion, die die negativen Bewertungen einer Frage um 1 erhöht 
+    public function incr_frage_negBewertung($QID){
+        //Temporäre Variable, um die Anzahl der negB zu speichern
+        $temp=0;
+        //Foreach-Loop, der durch jede Frage geht
+        foreach($this->Db_model->get_data_Fragen() AS $frage){
+            //Test, ob die QID der Frage mit der QID der gesuchten Frage übereinstimmt 
+            if($frage['QID']==$QID){
+                //Falls ja, wird die momentane Anzahl der negB der Frage in temp gespeichert
+                $temp=$frage['negBewertung'];
+                //Erhöhen der negB um 1
+                $temp++;
+            }
+        }
+        //Speichern der um 1 erhöhten negB in der DB
+        $this->db->set('negBewertung',$temp);
+        $this->db->where('QID',intval($QID));
+        $this->db->update('Fragen');
+        
+        //DEBUG
+        //return $temp;
+
+    }
+
+    //Funktion, die die positiven Bewertungen einer Frage um 1 veringert 
+    public function decr_frage_negBewertung($QID){
+        //Temporäre Variable, um die Anzahl der negB zu speichern
+        $temp=0;
+        //Foreach-Loop, der durch jede Frage geht
+        foreach($this->Db_model->get_data_Fragen() AS $frage){
+            //Test, ob die QID der Frage mit der QID der gesuchten Frage übereinstimmt 
+            if($frage['QID']==$QID){
+                //Falls ja, wird die momentane Anzahl der negB der Frage in temp gespeichert
+                $temp=$frage['negBewertung'];
+                //Erhöhen der negB um 1
+                $temp--;
+            }
+        }
+        //Speichern der um 1 veringerten negB in der DB
+        $this->db->set('negBewertung',$temp);
+        $this->db->where('QID',intval($QID));
+        $this->db->update('Fragen');
+        
+        //DEBUG
+        //return $temp;
+
+    }
+
     /**
      * FrageThema create, update, delete
      */
@@ -196,41 +295,20 @@ class Db_model extends CI_Model {
      */
 
 
-    public function create_thema($Bezeichnung, $AnzahlUser){
+    public function create_thema($Bezeichnung, $ID){
         $this->db->set('Bezeichnung', $Bezeichnung);
-        $this->db->set('AnzahlUser', $AnzahlUser);
+        $this->db->set('ID', $ID);
         $this->db->insert('Thema');
     }
     public function delete_thema($Bezeichnung){
         $this->db->where('Bezeichnung', $Bezeichnung);
         $this->db->delete('Thema');
     }
-    public function update_thema($Bezeichnung, $AnzahlUser){
+    public function update_thema($Bezeichnung, $ID){
         $this->db->set('Bezeichnung', $Bezeichnung);
-        $this->db->set('AnzahlUser', $AnzahlUser);
+        $this->db->set('ID', $ID);
         $this->db->where('Bezeichnung', $Bezeichnung);
         $this->db->update('Thema');
-    }
-
-    /**
-     * User create, update, delete
-     */
-
-
-    public function create_user($Username, $Passwort){
-        $this->db->set('Username', $Username);
-        $this->db->set('Password', $Passwort);
-        $this->db->insert('User');
-    }
-    public function delete_user($Username){
-        $this->db->where('Username', $Username);
-        $this->db->delete('User');
-    }
-    public function update_user($Username, $AnzahlUser){
-        $this->db->set('Username', $Username);
-        $this->db->set('AnzahlUser', $Passwort);
-        $this->db->where('Passwort(hash)', $Username);
-        $this->db->update('User');
     }
 
 
@@ -239,20 +317,20 @@ class Db_model extends CI_Model {
      */
 
 
-    public function create_userThema($Bezeichnung, $Username){
-        $this->db->set('Username', $Username);
+    public function create_userThema($Bezeichnung, $ID){
+        $this->db->set('ID', $ID);
         $this->db->set('QID', $QID);
         $this->db->insert('UserThema');
     }
-    public function delete_userThema($Bezeichnung, $Username){
-        $this->db->where('Username', $Username);
+    public function delete_userThema($Bezeichnung, $ID){
+        $this->db->where('ID', $ID);
         $this->db->where('Bezeichnung', $Bezeichnung);
         $this->db->delete('UserThema');
     }
-    public function update_userThema($Bezeichnung, $Username){
+    public function update_userThema($Bezeichnung, $ID){
         $this->db->set('Bezeichnung', $Bezeichnung);
-        $this->db->set('Username', $Username);
-        $this->db->where('Username', $Username);
+        $this->db->set('ID', $ID);
+        $this->db->where('ID', $ID);
         $this->db->where('Bezeichnung', $Bezeichnung);
         $this->db->update('UserThema');
     }

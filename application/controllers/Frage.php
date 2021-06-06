@@ -32,6 +32,7 @@ class Frage extends CI_Controller{
                 show_404();
             }
             $data['current_QID']=$current_QID;
+            print_r($this->Db_model->get_data_BewertungUserFrage());
             
         
         
@@ -43,7 +44,6 @@ class Frage extends CI_Controller{
     function __construct(){
         parent::__construct(); // calls the super constructor
         $this->load->model('Db_model');
-        $this->load->model('Frage_model');
         
     }
 }

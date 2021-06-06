@@ -1,32 +1,83 @@
 <!DOCTYPE html>
 <html>
+<head>
+<script>
+    $(document).ready(function(e){   
+        
+        $(".posBewertung").click(function(){
+            $.ajax({
+                
+                
 
-<?php
-//Debug
-//print_r($Fragen);
-//print_r($Antworten);
+                type:"POST",
+                url: "<?php echo site_url('db/create_bewertungUF');?>",
+                data:"&ID="+<?php echo $this->session->userdata('id_user'); ?>+"&QID="+<?php echo $current_QID?>+"&posB=True&negB=False",
+                success: function(response){
+                    $("#FrageStellenForm").trigger("reset");
+                    window.location.reload();
+                }
+            });
+        });
 
-echo'
-    <div id="entry'.$Fragen[$current_QID]['QID'].'" class="card">
-        <div class="card-header" data-headline=" '. $Fragen[$current_QID]['Headline']. '">
-            <h3>'.$Fragen[$current_QID]['Headline']. '</h3>'. 'Datum:&nbsp'. $Fragen[$current_QID]['Time'] . '&nbsp&nbspVon:&nbsp<b style="color:blue">' .$User[$Fragen[$current_QID]['ID']-1]['Username'] . '</b>
-            <div data-id=" '.$Fragen[$current_QID]['QID'].  ' "> </div>
-                            
-                <div class="card-body"  >  
-                    <p class="card-text"data-content=" ' . $Fragen[$current_QID]['Content'] .'">
-                             '. $Fragen[$current_QID]['Content'].'
-                            </p> 
+        $(".negBewertung").click(function(){
+            $.ajax({
+                
+
+                type:"POST",
+                url: "<?php echo site_url('db/create_bewertungUF');?>",
+                data:"&ID="+<?php echo $this->session->userdata('id_user'); ?>+"&QID="+<?php echo $current_QID?>+"&posB=False&negB=True",
+                success: function(response){
+                    $("#FrageStellenForm").trigger("reset");
+                    window.location.reload();
+                }
+            });
+        });
+        
+        
+
+    });
+</script>
+</head>
+
+
+
+
+
+
+
+
+
+<div id="entry'.<?php echo $Fragen[$current_QID]['QID']?>.'" class="card">
+    <div class="card-header" data-headline=" '. <?php echo $Fragen[$current_QID]['Headline']?>. '">
+        <h3><?php echo $Fragen[$current_QID]['Headline']?></h3> Datum:&nbsp <?php echo $Fragen[$current_QID]['Time']?>  &nbsp&nbspVon:&nbsp<b style="color:blue"> <?php echo $User[$Fragen[$current_QID]['ID']-1]['Username']?>  </b>
+        <div data-id=" '.<?php echo $Fragen[$current_QID]['QID']?>.  ' "> </div>
+                        
+            <div class="card-body"  >  
+                <p class="card-text"data-content=" ' . $Fragen[$current_QID]['Content'] .'">
+                            <?php echo $Fragen[$current_QID]['Content']?>
+                        </p> 
+            </div>
+            <div class="container" >
+                <div class="row">
+                    <form id="posBewertungForm" method="post" class="form-horizontal">
+                        <div class="posBewertung" >
+                            <button id="posBewertung type="button" class="btn btn-primary pull-right">↑</button>
+                        </div>
+                        <?php echo $Fragen[$current_QID]['posBewertung']?> 
+                    </form>
+                    <form id="negBewertungForm" method="post" class="form-horizontal">
+                        <div class="negBewertung" >
+                            <button id="negBewertung type="button" class="btn btn-primary pull-right">↓</button>
+                        </div>
+                        <?php echo $Fragen[$current_QID]['negBewertung']?>
+                        
+                    </form>
                 </div>
-                <div class="container">
-                        <button id="posBewertung type="button" class="btn btn-primary pull-right">↑</button>
-                        '.$Fragen[$current_QID]['posBewertung'] .'
-                        <button id="negBewertung type="button" class="btn btn-primary pull-right">↓</button>
-                        '.$Fragen[$current_QID]['negBewertung'] .'
-                    </div>
-                </div>
-                </p>
-            ';
-        foreach($Antworten AS $data_Antw)
+            </div>
+        </div>
+        </p>
+            
+        <?php foreach($Antworten AS $data_Antw)
         echo'
         <div id="entry'.$data_Antw['AID'].'" class="card">
             <div class="card-header" data-headline="'.$data_Antw['AID'].'">
@@ -40,8 +91,8 @@ echo'
                     </div>
                     </div>
                     </p>
-                ';
-?>
+                ';?>
+
 <head>
 </head>
 </html>
