@@ -86,11 +86,6 @@
 <body>
 
 <?php echo $content ?>
-<?php
-  //Lädt das Db_model in die Seite
-  $CI =& get_instance();
-  $CI->load->model('Db_model');
-?>
 
 </br>
 </br>

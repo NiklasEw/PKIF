@@ -32,7 +32,6 @@ class Frage extends CI_Controller{
                 show_404();
             }
             $data['current_QID']=$current_QID;
-            print_r($this->Db_model->get_data_BewertungUserFrage());
             
         
         

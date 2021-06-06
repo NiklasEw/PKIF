@@ -82,7 +82,7 @@ class Db_model extends CI_Model {
      * Antwort create, update, delete
      */
 
-    public function create_antwort($Content, $Time, $negBewertung, $posBewertung, $ID, $QID){
+    public function create_antwort($Content, $Time, $ID, $QID){
         $this->db->set('Content', $Content);
         $this->db->set('Time', $Time);
         $this->db->set('ID', $ID);
@@ -95,7 +95,7 @@ class Db_model extends CI_Model {
         $this->db->delete('Antworten');
     }
 
-    public function update_antwort($Content, $Time, $negBewertung, $posBewertung, $ID, $QID){
+    public function update_antwort($Content, $Time, $ID, $QID){
         $this->db->set('Content', $Content);
         $this->db->set('Time', $Time);
         $this->db->set('ID', $ID);

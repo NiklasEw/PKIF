@@ -42,7 +42,7 @@ class Database extends CI_Controller{
         $ID = $this->input->post('ID');
         $QID = $this->input->post('QID');
 
-        $AID = $this->Db_model->create_antwort($Content, $Time, $negBewertung, $posBewertung, $ID, $QID);
+        $AID = $this->Db_model->create_antwort($Content, $Time, $ID, $QID);
         echo $AID;
     }
     public function delete_antwort(){
@@ -56,7 +56,7 @@ class Database extends CI_Controller{
         $ID = $this->input->post('ID');
         $QID = $this->input->post('QID');
         $AID = $this->input->post('AID');
-        $this->Db_model->update_antwort($Content, $Time, $negBewertung, $posBewertung, $ID, $QID);
+        $this->Db_model->update_antwort($Content, $Time, $ID, $QID);
     }
 
     /**

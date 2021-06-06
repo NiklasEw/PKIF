@@ -3,6 +3,26 @@
 <head>
 <script>
     $(document).ready(function(e){   
+
+        //Macht den Frage stellen button aus der Eingabe der Datenbank funktionsfähig 
+        $("#submit").click(function(){
+            //Ließt das momentane Datum mit Hilfe der eingebauten JavaScript-Funktion aus
+            today=new Date();
+            //Formatiert das Datum in eine Form, die für SQL verarbeitbar ist
+            date=String(today.getFullYear()+"-"+ String(today.getMonth() + 1).padStart(2, '0')+"-" + today.getDate()).padStart(2, '0');
+
+            alert($("#AntwortForm").serialize()+"&Time="+date+"&ID="+<?php echo $this->session->userdata('id_user'); ?>+"&QID="+<?php echo $current_QID?>);
+            
+            $.ajax({
+                type:"POST",
+                url: "<?php echo site_url('db/create_Antwort');?>",
+                data:$("#AntwortForm").serialize()+"&Time="+date+"&ID="+<?php echo $this->session->userdata('id_user'); ?>+"&QID="+<?php echo $current_QID?>,
+                success: function(response){
+                    $("#AntwortForm").trigger("reset");
+                    window.location.reload();
+                }
+            });
+        });
         
         $(".posBewertung").click(function(){
             $.ajax({
@@ -13,7 +33,7 @@
                 url: "<?php echo site_url('db/create_bewertungUF');?>",
                 data:"&ID="+<?php echo $this->session->userdata('id_user'); ?>+"&QID="+<?php echo $current_QID?>+"&posB=True&negB=False",
                 success: function(response){
-                    $("#FrageStellenForm").trigger("reset");
+                    $("#posBewertungForm").trigger("reset");
                     window.location.reload();
                 }
             });
@@ -27,7 +47,7 @@
                 url: "<?php echo site_url('db/create_bewertungUF');?>",
                 data:"&ID="+<?php echo $this->session->userdata('id_user'); ?>+"&QID="+<?php echo $current_QID?>+"&posB=False&negB=True",
                 success: function(response){
-                    $("#FrageStellenForm").trigger("reset");
+                    $("#negBewertungForm").trigger("reset");
                     window.location.reload();
                 }
             });
@@ -39,6 +59,27 @@
 </script>
 </head>
 
+
+
+<!-- Eingabe in die Datenbank-->
+<?php
+
+  $session = $this->session->userdata('id_user');
+  if (!empty($session)): ?>
+<form  id="AntwortForm" method="post" class="form-horizontal">
+    <div class="container">
+
+        <div class="form-group">
+            <label for="AntwortForm">Ihre Antwort</label>
+            <textarea class="form-control" id="AntwortForm" rows="3" name="Content" placeholder="Ihre Antwort"></textarea>
+        </div>
+        <input type="hidden"id="updateid" name="AID" value=""class="form-control">
+        <button id="submit" type="button" class="btn btn-primary pull-right">Antwort geben</button>
+    </div>
+</form>
+<?php endif;?>
+
+</br>
 
 
 
