@@ -47,14 +47,6 @@ class Db_model extends CI_Model {
             return $query->result_array()[0];
         }
     }
-    public function get_data_BewertungUserAntworten($id=null){
-        $query = $this->db->get('BewertungUserAntwort');
-        if($id==null){
-            return $query->result_array();
-        } else{
-            return $query->result_array()[0];
-        }
-    }
     public function get_data_BewertungUserFrage($id=null){
         $query = $this->db->get('BewertungUserFrage');
         if($id==null){
@@ -93,8 +85,6 @@ class Db_model extends CI_Model {
     public function create_antwort($Content, $Time, $negBewertung, $posBewertung, $Username, $QID){
         $this->db->set('Content', $Content);
         $this->db->set('Time', $Time);
-        $this->db->set('negBewertung',$negBewertung);
-        $this->db->set('posBewertung', $posBewertung);
         $this->db->set('Username', $Username);
         $this->db->set('QID', $QID);
         $this->db->insert('Antworten');
@@ -108,39 +98,10 @@ class Db_model extends CI_Model {
     public function update_antwort($Content, $Time, $negBewertung, $posBewertung, $Username, $QID){
         $this->db->set('Content', $Content);
         $this->db->set('Time', $Time);
-        $this->db->set('negBewertung',$negBewertung);
-        $this->db->set('posBewertung', $posBewertung);
         $this->db->set('Username', $Username);
         $this->db->set('QID', $QID);
         $this->db->where('AID', intval($AID));
         $this->db->update('Antworten');
-    }
-
-     /**
-     * BewertungUserAntwort create, update, delete
-     */
-
-
-    public function create_bewertungUA($Username, $AID, $posB, $negB){
-        $this->db->set('Username', $Username);
-        $this->db->set('AID', $AID);
-        $this->db->set('posB',$posB);
-        $this->db->set('negB', $negB);
-        $this->db->insert('BewertungUserAntwort');
-    }
-    public function delete_bewertungUA($AID, $Username){
-        $this->db->where('AID', intval($AID));
-        $this->db->where('Username', $Username);
-        $this->db->delete('BewertungUserAntwort');
-    }
-    public function update_bewertungUA($Username, $AID, $posB, $negB){
-        $this->db->set('Username', $Username);
-        $this->db->set('AID', $AID);
-        $this->db->set('posB',$posB);
-        $this->db->set('negB', $negB);
-        $this->db->where('AID', intval($AID));
-        $this->db->where('Username', $Username);
-        $this->db->update('BewertungUserAntwort');
     }
 
     /**

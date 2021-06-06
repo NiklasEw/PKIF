@@ -21,22 +21,14 @@
                 type:"POST",
                 url: "<?php echo site_url('db/create_frage');?>",
                 data:$("#FrageStellenForm").serialize()+"&Time="+date+"&negBewertung=0&posBewertung=0&ID="+<?php echo $this->session->userdata('id_user'); ?>,
-                
+                success: function(document){
+                    $("#myForm").trigger("reset");
+                    window.location.reload();
+                }
             });
         });
         
-        $("#posBewertung0").click(function(){
-
-            alert($("#posBewertungForm").serialize());
-            $.ajax({
-                type:"POST",
-                url: "<?php echo site_url('db/create_bewertungUF');?>",
-                data:$("#posBewertungForm").serialize(),
-                success: function (response) {
-                    alert(response);
-                }   
-            });
-        });
+        
 
     });
 </script>
@@ -71,11 +63,11 @@
    <!-- Ausgabe der Datenbank in Karten-->
    <div class="container" >
         <?php
-            foreach($Fragen AS $data_item) {
+            foreach(array_reverse($Fragen) AS $data_item) {
             echo'
                     <div id="entry'.$data_item['QID'].'" class="card">
                         <div class="card-header" data-headline=" '. $data_item['Headline']. '">
-                        <h3>'.$data_item['Headline']. '</h3>'. 'Datum:&nbsp'. $data_item['Time'] . '&nbsp&nbspVon:&nbsp<b style="color:blue">' .$User[$data_item['ID']-1]['Username'] . '</b>
+                        <h3><a href="/Frage/'.$data_item['QID'].'">'.$data_item['Headline']. '</a></h3>'. 'Datum:&nbsp'. $data_item['Time'] . '&nbsp&nbspVon:&nbsp<b style="color:blue">' .$User[$data_item['ID']-1]['Username'] . '</b>
                             <div data-id=" '.$data_item['QID'].  ' "> </div>
                             
                         <div class="card-body"  >  
@@ -87,7 +79,7 @@
                         <div class="card-body"  >  
                             <form id="posBewertungForm" method="post" class="form-horizontal">
                                 <div align="left">
-                                    <button id="posBewertung'.$data_item['QID'].' type="button" class="btn btn-primary pull-right">↑</button>
+                                <i class="fas fa-arrow-circle-up fa-2x"></i>
                                 </div> 
                                 <div align="left"> ' . 
                                     $data_item['posBewertung'] .'
@@ -95,7 +87,7 @@
                             </form>
                             <form id="negBewertungForm" method="post" class="form-horizontal">
                                 <div align="right">
-                                    <button id="negBewertung'.$data_item['QID'].' type="button" class="btn btn-primary pull-right">↓</button>
+                                <i class="fas fa-arrow-circle-down fa-2x"></i>
                                 </div> 
                                 <div align="right"> ' . 
                                 $data_item['negBewertung'] .'

@@ -14,8 +14,6 @@ class Database extends CI_Controller{
         $data['Fragen'] = $this->Db_model->get_data_Fragen();
         $data['Antworten'] = $this->Db_model->get_data_Antworten();
         $data['Thema'] = $this->Db_model->get_data_Thema();
-        $data['BewertungUserAntwort'] = $this->Db_model->get_data_BewertungUserAntworten();
-        $data['BewertungUserFrage'] = $this->Db_model->get_data_BewertungUserFrage();
         $data['FragenThema'] = $this->Db_model->get_data_FragenThema();
         $data['UserThema'] = $this->Db_model->get_data_UserThema();
         
@@ -41,8 +39,6 @@ class Database extends CI_Controller{
 
         $Content = $this->input->post('Content');
         $Time = $this->input->post('Time');
-        $negBewertung = $this->input->post('negBewertung');
-        $posBewertung = $this->input->post('posBewertung');
         $ID = $this->input->post('ID');
         $QID = $this->input->post('QID');
 
@@ -57,36 +53,10 @@ class Database extends CI_Controller{
     public function update_antwort(){
         $Content = $this->input->post('Content');
         $Time = $this->input->post('Time');
-        $negBewertung = $this->input->post('negBewertung');
-        $posBewertung = $this->input->post('posBewertung');
         $ID = $this->input->post('ID');
         $QID = $this->input->post('QID');
         $AID = $this->input->post('AID');
         $this->Db_model->update_antwort($Content, $Time, $negBewertung, $posBewertung, $ID, $QID);
-    }
-    /**
-     * BewertungUserAntwort create, update, delete
-     */
-    public function create_bewertungUA(){
-
-        $ID = $this->input->post('ID');
-        $AID = $this->input->post('AID');
-        $posB = $this->input->post('posB');
-        $negB = $this->input->post('negB');
-        $this->Db_model->create_bewertungUA($ID, $AID, $posB, $negB);
-    }
-    public function delete_bewertungUA(){
-        $AID = $this->input->post('AID');
-        $ID = $this->input->post('ID');
-        $this->Db_model->delete_bewertungUA($AID,$ID);
-    }
-
-    public function update_bewertungUA(){
-        $ID = $this->input->post('ID');
-        $AID = $this->input->post('AID');
-        $posB = $this->input->post('posB');
-        $negB = $this->input->post('negB');
-        $this->Db_model->update_bewertungUA($ID, $AID, $posB, $negB);
     }
 
     /**
