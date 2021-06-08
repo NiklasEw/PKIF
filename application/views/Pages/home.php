@@ -38,6 +38,9 @@
 
 <!-- Eingabe in die Datenbank-->
 <?php
+/**
+ * @author Niklas Ewes, Tibor Wiegräbe
+ */
 
   $session = $this->session->userdata('id_user');
   if (!empty($session)): ?>

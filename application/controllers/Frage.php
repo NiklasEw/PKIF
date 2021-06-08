@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Niklas Ewes
+ */
 defined('BASEPATH') OR exit();
 class Frage extends CI_Controller{
     public function view($current_QID,$page='frage'){

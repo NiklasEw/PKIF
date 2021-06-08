@@ -64,6 +64,9 @@
 
 <!-- Eingabe in die Datenbank-->
 <?php
+/**
+ * @author Niklas Ewes
+ */
 
   $session = $this->session->userdata('id_user');
   if (!empty($session)): ?>

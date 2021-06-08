@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Niklas Ewes
+ */
 defined('BASEPATH') OR exit();
 class Database extends CI_Controller{
     public function mydata($page='datapage'){

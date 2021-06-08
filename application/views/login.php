@@ -1,4 +1,8 @@
-<?php if(isset($_SESSION)) {
+<?php
+/**
+ * @author Niklas Ewes
+ */
+if(isset($_SESSION)) {
     echo $this->session->flashdata('flash_data');
 } ?>
 <div class="row">

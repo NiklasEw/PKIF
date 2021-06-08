@@ -29,3 +29,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
+application/ci_sessions/ci_sessiong14v1ll0sm9uqp2nguvkfffpahtud3um
+application/ci_sessions/ci_sessionl90j6dfqgk3b9rhk5rkm9n2ja5ho3efs

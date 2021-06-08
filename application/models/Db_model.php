@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author Niklas Ewes, Tibor Wiegräbe
+ */
+
 class Db_model extends CI_Model {
     public function __construct(){
         $this->load->database();

@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Niklas Ewes
+ */
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Register extends CI_Controller {
     function __construct(){
