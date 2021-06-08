@@ -5,7 +5,7 @@ var $template_data = array();
 function load($template, $view, $view_data = array()){
     $this-> CI =& get_instance();
     $this->set('content', $this->CI->load->view($view, $view_data, TRUE));+
-    $this->set('nav_list', array('Home','Contact','Impressum'));
+    $this->set('nav_list', array('Home','Impressum'));
     return $this->CI->load->view($template, $this->template_data);
     }
 

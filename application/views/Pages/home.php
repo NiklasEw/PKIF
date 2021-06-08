@@ -49,7 +49,7 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">Frage</label>
+            <label for="exampleFormControlTextarea1">Beschreibung</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Content"></textarea>
         </div>
         <input type="hidden"id="updateid" name="QID" value=""class="form-control">
@@ -77,22 +77,10 @@
                             </p> 
                         </div>
                         <div class="card-body"  >  
-                            <form id="posBewertungForm" method="post" class="form-horizontal">
-                                <div align="left">
-                                <i class="fas fa-arrow-circle-up fa-2x"></i>
-                                </div> 
-                                <div align="left"> ' . 
+                                <i class="fas fa-arrow-circle-up fa-2x"></i> ' . 
                                     $data_item['posBewertung'] .'
-                                </div> 
-                            </form>
-                            <form id="negBewertungForm" method="post" class="form-horizontal">
-                                <div align="right">
-                                <i class="fas fa-arrow-circle-down fa-2x"></i>
-                                </div> 
-                                <div align="right"> ' . 
+                                <i class="fas fa-arrow-circle-down fa-2x"></i> ' . 
                                 $data_item['negBewertung'] .'
-                                </div>
-                            </form>
                             </p> 
                         </div>
                     </div>

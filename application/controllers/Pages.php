@@ -12,10 +12,7 @@ class Pages extends CI_Controller{
             $data['User'] = $this->Db_model->get_data_User();
             $data['Fragen'] = $this->Db_model->get_data_Fragen();
             $data['Antworten'] = $this->Db_model->get_data_Antworten();
-            $data['Thema'] = $this->Db_model->get_data_Thema();
             $data['BewertungUserFrage'] = $this->Db_model->get_data_BewertungUserFrage();
-            $data['FragenThema'] = $this->Db_model->get_data_FragenThema();
-            $data['UserThema'] = $this->Db_model->get_data_UserThema();
         
         
 

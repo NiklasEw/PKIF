@@ -11,7 +11,8 @@
             //Formatiert das Datum in eine Form, die für SQL verarbeitbar ist
             date=String(today.getFullYear()+"-"+ String(today.getMonth() + 1).padStart(2, '0')+"-" + today.getDate()).padStart(2, '0');
 
-            alert($("#AntwortForm").serialize()+"&Time="+date+"&ID="+<?php echo $this->session->userdata('id_user'); ?>+"&QID="+<?php echo $current_QID?>);
+            //DEBUG
+            //alert($("#AntwortForm").serialize()+"&Time="+date+"&ID="+<?php echo $this->session->userdata('id_user'); ?>+"&QID="+<?php echo $current_QID?>);
             
             $.ajax({
                 type:"POST",

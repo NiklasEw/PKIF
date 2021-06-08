@@ -38,35 +38,8 @@ class Db_model extends CI_Model {
             return $query->result_array()[0];
         }
     }
-
-    public function get_data_Thema($id=null){
-        $query = $this->db->get('Thema');
-        if($id==null){
-            return $query->result_array();
-        } else{
-            return $query->result_array()[0];
-        }
-    }
     public function get_data_BewertungUserFrage($id=null){
         $query = $this->db->get('BewertungUserFrage');
-        if($id==null){
-            return $query->result_array();
-        } else{
-            return $query->result_array()[0];
-        }
-    }
-
-    public function get_data_FragenThema($id=null){
-        $query = $this->db->get('FragenThema');
-        if($id==null){
-            return $query->result_array();
-        } else{
-            return $query->result_array()[0];
-        }
-    }
-
-    public function get_data_UserThema($id=null){
-        $query = $this->db->get('UserThema');
         if($id==null){
             return $query->result_array();
         } else{
@@ -268,70 +241,18 @@ class Db_model extends CI_Model {
     }
 
     /**
-     * FrageThema create, update, delete
+     * Create, delete User
      */
 
+     public function create_user($Username,$Password){
+        $this->db->set('Username',$Username);
+        $this->db->set('Password',$Password);
+        $this->db->insert('User');
 
-    public function create_frageThema($Bezeichnung, $QID){
-        $this->db->set('Bezeichnung', $Bezeichnung);
-        $this->db->set('QID', $QID);
-        $this->db->insert('FragenThema');
-    }
-    public function delete_frageThema($Bezeichnung, $QID){
-        $this->db->where('QID', intval($QID));
-        $this->db->where('Bezeichnung', $Bezeichnung);
-        $this->db->delete('FragenThema');
-    }
-    public function update_frageThema($Bezeichnung, $QID){
-        $this->db->set('Bezeichnung', $Bezeichnung);
-        $this->db->set('QID', $QID);
-        $this->db->where('QID', intval($QID));
-        $this->db->where('Bezeichnung', $Bezeichnung);
-        $this->db->update('FragenThema');
-    }
+     }
 
-    /**
-     * Thema create, update, delete
-     */
-
-
-    public function create_thema($Bezeichnung, $ID){
-        $this->db->set('Bezeichnung', $Bezeichnung);
-        $this->db->set('ID', $ID);
-        $this->db->insert('Thema');
-    }
-    public function delete_thema($Bezeichnung){
-        $this->db->where('Bezeichnung', $Bezeichnung);
-        $this->db->delete('Thema');
-    }
-    public function update_thema($Bezeichnung, $ID){
-        $this->db->set('Bezeichnung', $Bezeichnung);
-        $this->db->set('ID', $ID);
-        $this->db->where('Bezeichnung', $Bezeichnung);
-        $this->db->update('Thema');
-    }
-
-
-    /**
-     * UserThema create, update, delete
-     */
-
-
-    public function create_userThema($Bezeichnung, $ID){
-        $this->db->set('ID', $ID);
-        $this->db->set('QID', $QID);
-        $this->db->insert('UserThema');
-    }
-    public function delete_userThema($Bezeichnung, $ID){
-        $this->db->where('ID', $ID);
-        $this->db->where('Bezeichnung', $Bezeichnung);
-        $this->db->delete('UserThema');
-    }
-    public function update_userThema($Bezeichnung, $ID){
-        $this->db->set('Bezeichnung', $Bezeichnung);
-        $this->db->set('ID', $ID);
-        $this->db->where('ID', $ID);
-        $this->db->where('Bezeichnung', $Bezeichnung);
-        $this->db->update('UserThema');
-    }
+     public function delete_user($ID){
+         $this->db->where('ID',$ID);
+         $this->db->delete('ID');
+     }
 }
